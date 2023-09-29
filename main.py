@@ -18,10 +18,11 @@
 import pandas as pd
 
 tabela = pd.read_csv("clientes.csv")
+display(tabela)
 
 # %%
 # 2. Preparar a base de dados
-# usando o print.info, eu vi quais colunas não são numeros, então vou usar o labelEncoder nelas para poder convertelas(exeto o score de credito)
+# usando o display.info, eu vi quais colunas não são numeros, então vou usar o labelEncoder nelas para poder convertelas(exeto o score de credito)
 from sklearn.preprocessing import LabelEncoder
 
 codificador = LabelEncoder()
@@ -31,5 +32,18 @@ for coluna in colunasAConverter:
     tabela[coluna] = codificador.fit_transform(tabela[coluna])
 
 
+
+# %%
+# dados de X e Y <-- X se refere ao material de estudo, e Y a resposta que sera encontrada
+y = tabela['score_credito']
+colunas = [
+    'score_credito',
+    'id_cliente'
+]
+
+x = tabela.drop(columns=colunas)
+
+from sklearn.model_selection import train_test_split
+x_Treino, x_Teste, y_Treino, y_Teste = train_test_split(x, y)
 
 
