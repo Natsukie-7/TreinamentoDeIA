@@ -18,7 +18,7 @@
 import pandas as pd
 
 tabela = pd.read_csv("clientes.csv")
-display(tabela)
+
 
 # %%
 # 2. Preparar a base de dados
@@ -76,3 +76,15 @@ print(accuracy_score(y_Teste, previsao_knn))
 # Para este caso o modelo Arvore de decisão teve uma acuracia melhor, tendo uma taxa de acerto de 82% aproximadamente, sendo que o do neighboor, teve de 74%
 
 
+
+# %%
+# 5. fazendo novas previsões
+novos_clientes = pd.read_csv("novos_clientes.csv")
+for coluna in novos_clientes.columns:
+    if novos_clientes[coluna].dtype == "object" and coluna != "score_credito":
+        novos_clientes[coluna] = codificador.fit_transform(novos_clientes[coluna])
+
+previsoes = modelo_arvoredecisão.predict(novos_clientes)
+print(previsoes)
+
+# %%
