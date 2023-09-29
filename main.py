@@ -60,4 +60,19 @@ modelo_knn = KNeighborsClassifier()
 modelo_arvoredecisão.fit(x_Treino, y_Treino)
 modelo_knn.fit(x_Treino, y_Treino)
 
+# %%
+# 4. Escolher o melhor modelo
+from sklearn.metrics import accuracy_score
+previsao_arvoredecisao = modelo_arvoredecisão.predict(x_Teste)
+previsao_knn = modelo_knn.predict(x_Teste.to_numpy()) # so tem esse numpy pelo knn precisar dos dados convertidos para este formato
+
+print(accuracy_score(y_Teste, previsao_arvoredecisao))
+print(accuracy_score(y_Teste, previsao_knn))
+
+
+# %% [markdown]
+# 
+# 
+# Para este caso o modelo Arvore de decisão teve uma acuracia melhor, tendo uma taxa de acerto de 82% aproximadamente, sendo que o do neighboor, teve de 74%
+
 
