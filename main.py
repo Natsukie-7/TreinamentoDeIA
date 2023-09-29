@@ -20,4 +20,16 @@ import pandas as pd
 tabela = pd.read_csv("clientes.csv")
 
 # %%
-#
+# 2. Preparar a base de dados
+# usando o print.info, eu vi quais colunas não são numeros, então vou usar o labelEncoder nelas para poder convertelas(exeto o score de credito)
+from sklearn.preprocessing import LabelEncoder
+
+codificador = LabelEncoder()
+
+colunasAConverter = ['profissao', 'mix_credito', 'comportamento_pagamento']
+for coluna in colunasAConverter:
+    tabela[coluna] = codificador.fit_transform(tabela[coluna])
+
+
+
+
