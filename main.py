@@ -46,4 +46,18 @@ x = tabela.drop(columns=colunas)
 from sklearn.model_selection import train_test_split
 x_Treino, x_Teste, y_Treino, y_Teste = train_test_split(x, y)
 
+# %%
+# 3. Criar o Modelo de IA --> Score crédito: Good, Standart, poor
+# Arvore de decisão
+from sklearn.ensemble import RandomForestClassifier
+# knn
+from sklearn.neighbors import KNeighborsClassifier
+
+modelo_arvoredecisão = RandomForestClassifier()
+modelo_knn = KNeighborsClassifier()
+
+# Treinando a ia
+modelo_arvoredecisão.fit(x_Treino, y_Treino)
+modelo_knn.fit(x_Treino, y_Treino)
+
 
